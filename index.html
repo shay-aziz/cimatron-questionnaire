@@ -618,7 +618,8 @@ function buildPdfHTML(d){
   const dir=lang==='he'?'rtl':'ltr';
   const dateStr=new Date().toLocaleDateString();
   const orange='#E8611A',blue='#2A5FA8';
-  const hdr=(pg,tot)=>`<div class="pt-header"><div class="pt-header-texts"><div class="pt-title">${t('headerTitle')}</div><div class="pt-sub">${t('headerSub')}</div></div><img class="pt-logo" src="${logoBase64}" alt="Cimatron"></div>`;
+  const logoSrc = logoBase64 || '';
+  const hdr=(pg,tot)=>`<div class="pt-header"><div class="pt-header-texts"><div class="pt-title">${t('headerTitle')}</div><div class="pt-sub">${t('headerSub')}</div></div>${logoSrc?`<img class="pt-logo" src="${logoSrc}" alt="Cimatron">`:'<span style="color:#fff;font-weight:700;font-size:18px">cimatron</span>'}</div>`;
   const ftr=(pg,tot)=>`<div class="pt-footer"><span>${t('dateLabel')}: ${dateStr}</span><span>${t('pageLabel')} ${pg}/${tot}</span></div>`;
   const sec=(txt,cls)=>`<div class="pt-sec-title ${cls||''}">${txt}</div>`;
   const row=(l,v)=>v?`<div class="pt-row"><span class="pt-lbl">${l}</span><span class="pt-val">${v}</span></div>`:'';
