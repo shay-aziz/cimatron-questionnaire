@@ -78,24 +78,6 @@ header{background:#fff;border-bottom:1px solid #ddd;padding:10px 16px;display:fl
 @keyframes spin{to{transform:rotate(360deg)}}
 .loading-text{font-size:15px;color:#555}
 #pdf-template{display:none;position:fixed;top:-99999px;left:0;width:900px;background:#fff;font-family:Arial,sans-serif;color:#222;direction:rtl}
-.pt-page{width:900px;min-height:1272px;display:flex;flex-direction:column;background:#fff}
-.pt-header{background:#E8611A;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
-.pt-header-texts .pt-title{color:#fff;font-size:20px;font-weight:700}
-.pt-header-texts .pt-sub{color:#ffe0cc;font-size:13px;margin-top:2px}
-.pt-logo{height:36px}
-.pt-body{padding:22px 32px;flex:1}
-.pt-section{margin-bottom:20px}
-.pt-sec-title{background:#E8611A;color:#fff;display:inline-block;padding:5px 14px;border-radius:5px;font-size:13px;font-weight:700;margin-bottom:10px}
-.pt-sec-title.blue{background:#2A5FA8}
-.pt-row{display:flex;gap:10px;margin-bottom:7px;font-size:13px;line-height:1.5;align-items:baseline}
-.pt-lbl{color:#999;min-width:120px;flex-shrink:0;font-size:12px}
-.pt-val{color:#222;flex:1;font-size:13px}
-.pt-skill-row{display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:5px 0;border-bottom:1px solid #f0f0f0}
-.pt-skill-topic{color:#444;flex:1}
-.pt-skill-level{color:#E8611A;font-weight:700;font-size:12px;min-width:100px;text-align:left}
-.pt-skill-level.blue{color:#2A5FA8}
-.pt-goal{font-size:13px;padding:3px 0;color:#333}
-.pt-footer{border-top:1px solid #eee;padding:10px 32px;display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#bbb;flex-shrink:0}
 </style>
 </head>
 <body>
@@ -113,10 +95,10 @@ header{background:#fff;border-bottom:1px solid #ddd;padding:10px 16px;display:fl
 </div>
 
 <header>
-  <img id="logo-img" alt="Cimatron" style="height:40px;object-fit:contain">
+  <img id="logo-img" alt="Cimatron" style="height:38px;object-fit:contain">
   <div class="header-title" id="header-title">שאלון קדם קורס – סימטרון</div>
   <div class="header-sub" id="header-sub">צוות סימטרון ישראל</div>
-  <div style="font-size:10px;color:#bbb;margin-top:2px">v2.9</div>
+  <div style="font-size:10px;color:#bbb;margin-top:2px">v3.0</div>
 </header>
 
 <div class="notice-bar" id="main-notice"></div>
@@ -275,8 +257,7 @@ const T={
       {t:'קורס GibbsCAM',d:'מיועד למעוניינים לרכוש ידע בהכנת תוכניות עיבוד לחריטה וכרסום בתוכנת GibbsCAM.'}
     ],
     cadNotice:'באם נדרש לך קורס CAD בסיסי (תכנון) המיועד לכאלו שעוסקים בתכנון בלבד – אנא פנה אלינו.',
-    noExp:'אין לי ניסיון בתוכנות CAD/CAM',
-    p3multi:'ניתן לסמן יותר מאפשרות אחת',
+    noExp:'אין לי ניסיון בתוכנות CAD/CAM',p3multi:'ניתן לסמן יותר מאפשרות אחת',
     sw:['Cimatron','MasterCam','GibbsCAM','סוליד וורקס','סולידקאם','Catia','UG-NX','אחר'],
     thTopic:'נושא',thNone:'ללא ניסיון',thBasic:'ידע בסיסי',thAdv:'ידע מתקדם',
     cadRows:['תכנון ובניית מודלים (Modeling)','תכנון מודלים בהרכבות (Assembly)','שרטוט מודלים (Drafting / Drawing)'],
@@ -284,20 +265,17 @@ const T={
     gibbsRows:['הכנת עיבודים לחריטה TURNING','הכנת עיבודים למכונות MTM','הכנת עיבודים למכונות SWISSTYPE'],
     goals:['אני מתכנן/ת לעבוד באופן עצמאי בתוכנה ולהכין תוכניות עיבוד בפועל','אני צפוי/ה להשתמש בתוכנה כחלק מהתפקיד, אך קיימת תמיכה מקצועית בחברה','אני מעוניין/ת להעמיק ולהרחיב ידע מקצועי בתחום','אני בתהליך בחינת רכישת התוכנה ועליי להעריך את התאמתה לצרכים שלנו','נרשמתי לקורס בהנחיית מקום העבודה','אחר'],
     p5multi:'ניתן לסמן יותר מאפשרות אחת',
-    expectations:'ציפיות מהקורס (אופציונלי)',
-    otherPlaceholder:'פרט/י כאן...',
+    expectations:'ציפיות מהקורס (אופציונלי)',otherPlaceholder:'פרט/י כאן...',
     next:'הבא ›',prev:'‹ קודם',nextFinal:'סיום ›',
     errReq:'שדה חובה',errRole:'יש לבחור לפחות אחד',errCourse:'יש לבחור קורס',
     errSw:'יש לבחור לפחות אחת או לסמן "אין ניסיון"',errGoals:'יש לבחור לפחות מטרה אחת',
-    successTitle:'השאלון הושלם!',
-    successMsg:'ניתן לשמור את ה-PDF ולשלוח אותו ל:\nshay.aziz@cimatron.com',
+    successTitle:'השאלון הושלם!',successMsg:'ניתן לשמור את ה-PDF ולשלוח אותו ל:\nshay.aziz@cimatron.com',
     savePdf:'שמור PDF',share:'שתף',loading:'מכין PDF...',dateLabel:'תאריך',pageLabel:'עמוד',
   },
   en:{
     headerTitle:'Pre-Course Questionnaire – Cimatron',headerSub:'Cimatron Israel Team',
     notice:'The questionnaire is written in masculine form for convenience only, but is intended equally for all genders.',
-    introGreeting:'Dear Trainee,',
-    introBody:'In order to improve our preparation for the course and to help you get the most out of it, we would appreciate your filling out this questionnaire. The questionnaire is for our internal use only.',
+    introGreeting:'Dear Trainee,',introBody:'In order to improve our preparation for the course and to help you get the most out of it, we would appreciate your filling out this questionnaire. The questionnaire is for our internal use only.',
     p1:'Personal Details',p2:'Course Selection',p3:'Previous CAD/CAM Experience',p4:'Previous Knowledge Level',p5:'Course Participation Goals',
     fname:'First Name',lname:'Last Name',phone:'Phone',company:'Company Name',
     selfregister:'Are you filling this form for yourself?',yes:'Yes',no:'No',candidate:'Candidate Name',
@@ -309,29 +287,24 @@ const T={
       {t:'GibbsCAM Course',d:'For those who want to learn turning and milling programming using GibbsCAM.'}
     ],
     cadNotice:'If you need a basic CAD course (design only) – please contact us.',
-    noExp:'No CAD/CAM software experience',
-    p3multi:'You may select more than one',
+    noExp:'No CAD/CAM software experience',p3multi:'You may select more than one',
     sw:['Cimatron','MasterCam','GibbsCAM','SolidWorks','SolidCAM','Catia','UG-NX','Other'],
     thTopic:'Topic',thNone:'No Experience',thBasic:'Basic',thAdv:'Advanced',
     cadRows:['3D Modeling','Assembly Design','Drafting / Drawing'],
     camRows:['2X Contouring','3X Volumetric Machining','Surface 3X Machining','5X Simultaneous Machining','4X/5X Index Machining'],
     gibbsRows:['Turning (TURNING)','MTM Machines','SWISSTYPE Machines'],
     goals:['I plan to work independently with the software','I will use the software as part of my role with company support','I want to deepen my professional knowledge','I am evaluating the software for purchase','I enrolled by workplace instruction','Other'],
-    p5multi:'You may select more than one',
-    expectations:'Course Expectations (optional)',
-    otherPlaceholder:'Please specify...',
+    p5multi:'You may select more than one',expectations:'Course Expectations (optional)',otherPlaceholder:'Please specify...',
     next:'Next ›',prev:'‹ Back',nextFinal:'Finish ›',
     errReq:'Required',errRole:'Select at least one',errCourse:'Please select a course',
     errSw:'Select at least one or mark "No experience"',errGoals:'Select at least one goal',
-    successTitle:'Questionnaire Complete!',
-    successMsg:'Save the PDF and send it to:\nshay.aziz@cimatron.com',
+    successTitle:'Questionnaire Complete!',successMsg:'Save the PDF and send it to:\nshay.aziz@cimatron.com',
     savePdf:'Save PDF',share:'Share',loading:'Preparing PDF...',dateLabel:'Date',pageLabel:'Page',
   },
   ru:{
     headerTitle:'Анкета перед курсом – Cimatron',headerSub:'Команда Cimatron Израиль',
     notice:'Анкета написана в мужском роде для удобства, но предназначена одинаково для всех.',
-    introGreeting:'Уважаемый слушатель,',
-    introBody:'Чтобы улучшить нашу подготовку к курсу и помочь вам получить максимум пользы, просим заполнить эту анкету. Анкета предназначена исключительно для внутреннего использования.',
+    introGreeting:'Уважаемый слушатель,',introBody:'Чтобы улучшить нашу подготовку к курсу и помочь вам получить максимум пользы, просим заполнить эту анкету. Анкета предназначена исключительно для внутреннего использования.',
     p1:'Личные данные',p2:'Выбор курса',p3:'Опыт работы с CAD/CAM',p4:'Уровень знаний',p5:'Цели участия в курсе',
     fname:'Имя',lname:'Фамилия',phone:'Телефон',company:'Название компании',
     selfregister:'Вы заполняете форму для себя?',yes:'Да',no:'Нет',candidate:'Имя кандидата',
@@ -343,69 +316,49 @@ const T={
       {t:'Курс GibbsCAM',d:'Для желающих освоить токарную и фрезерную обработку в GibbsCAM.'}
     ],
     cadNotice:'Если вам нужен базовый курс CAD – пожалуйста, свяжитесь с нами.',
-    noExp:'Нет опыта работы с CAD/CAM',
-    p3multi:'Можно выбрать несколько',
+    noExp:'Нет опыта работы с CAD/CAM',p3multi:'Можно выбрать несколько',
     sw:['Cimatron','MasterCam','GibbsCAM','SolidWorks','SolidCAM','Catia','UG-NX','Другое'],
     thTopic:'Тема',thNone:'Нет опыта',thBasic:'Базовые',thAdv:'Продвинутые',
     cadRows:['3D-моделирование','Сборочное проектирование','Чертёж (Drafting)'],
     camRows:['NC 2X контурирование','NC 3X объёмная обработка','NC Surface 3X','NC 5X одновременная','NC 4X/5X индексная'],
     gibbsRows:['Токарная (TURNING)','Станки MTM','Станки SWISSTYPE'],
     goals:['Планирую самостоятельно работать в программе','Буду использовать ПО при поддержке компании','Хочу углубить профессиональные знания','Оцениваю покупку ПО','Записался по направлению работодателя','Другое'],
-    p5multi:'Можно выбрать несколько',
-    expectations:'Ожидания от курса (необязательно)',
-    otherPlaceholder:'Укажите подробнее...',
+    p5multi:'Можно выбрать несколько',expectations:'Ожидания от курса (необязательно)',otherPlaceholder:'Укажите подробнее...',
     next:'Далее ›',prev:'‹ Назад',nextFinal:'Завершить ›',
     errReq:'Обязательное поле',errRole:'Выберите хотя бы один',errCourse:'Выберите курс',
     errSw:'Выберите хотя бы одну программу или "Нет опыта"',errGoals:'Выберите хотя бы одну цель',
-    successTitle:'Анкета завершена!',
-    successMsg:'Сохраните PDF и отправьте на:\nshay.aziz@cimatron.com',
+    successTitle:'Анкета завершена!',successMsg:'Сохраните PDF и отправьте на:\nshay.aziz@cimatron.com',
     savePdf:'Сохранить PDF',share:'Поделиться',loading:'Подготовка PDF...',dateLabel:'Дата',pageLabel:'Стр.',
   }
 };
 
 let lang='he',currentPage=1,totalPages=5;
 let noExpSelected=false,savedPdfBlob=null,savedFilename='';
+
+// טעינת לוגו ל-base64 דרך fetch
 let logoBase64='';
+fetch('logo.png')
+  .then(r=>r.blob())
+  .then(blob=>{
+    const fr=new FileReader();
+    fr.onloadend=()=>{
+      logoBase64=fr.result;
+      document.getElementById('logo-img').src=logoBase64;
+    };
+    fr.readAsDataURL(blob);
+  })
+  .catch(()=>{
+    document.getElementById('logo-img').style.display='none';
+  });
 
 function t(k){return T[lang][k]||''}
-
-// Load logo
-(function(){
-  const svgFallback='data:image/svg+xml;base64,'+btoa(unescape(encodeURIComponent(
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 70">
-      <ellipse cx="30" cy="35" rx="26" ry="30" fill="#E8611A" opacity="0.15"/>
-      <ellipse cx="30" cy="35" rx="18" ry="30" fill="#E8611A" opacity="0.40"/>
-      <ellipse cx="30" cy="35" rx="9" ry="30" fill="#E8611A"/>
-      <text x="64" y="47" font-family="Arial" font-weight="700" font-size="32" fill="#E8611A">cimatron</text>
-    </svg>`
-  )));
-  logoBase64=svgFallback;
-  const el=document.getElementById('logo-img');
-  el.src=svgFallback;
-  // Try real logo
-  const img=new Image();img.crossOrigin='anonymous';
-  img.onload=function(){
-    try{
-      const c=document.createElement('canvas');c.width=img.naturalWidth;c.height=img.naturalHeight;
-      c.getContext('2d').drawImage(img,0,0);
-      logoBase64=c.toDataURL('image/png');
-      el.src=logoBase64;
-    }catch(e){el.src=img.src;logoBase64=svgFallback;}
-  };
-  img.onerror=function(){};
-  // Try local file first, then remote
-  el.src='logo.png';
-  el.onerror=function(){
-    img.src='https://www.cimatron.com/wp-content/uploads/2021/03/Cimatron-Logo.png';
-    el.onerror=function(){el.src=svgFallback;};
-  };
-})();
 
 function setLang(l){
   lang=l;
   document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
   document.querySelector(`.lang-btn[onclick="setLang('${l}')"]`).classList.add('active');
-  document.documentElement.lang=l;document.documentElement.dir=l==='he'?'rtl':'ltr';
+  document.documentElement.lang=l;
+  document.documentElement.dir=l==='he'?'rtl':'ltr';
   rebuildAll();
 }
 
@@ -571,12 +524,9 @@ function validatePage(){
     }
     if(!document.querySelectorAll('#roles-list input[type=checkbox]:checked').length){show('err-role');ok=false;}else hide('err-role');
   }
-  if(currentPage===2){
-    if(!document.querySelector('input[name=course]:checked')){show('err-course');ok=false;}else hide('err-course');
-  }
+  if(currentPage===2){if(!document.querySelector('input[name=course]:checked')){show('err-course');ok=false;}else hide('err-course');}
   if(currentPage===3){
-    const hasSw=document.querySelectorAll('#sw-grid input:checked').length>0;
-    if(!noExpSelected&&!hasSw){show('err-sw');ok=false;}else hide('err-sw');
+    if(!noExpSelected&&!document.querySelectorAll('#sw-grid input:checked').length){show('err-sw');ok=false;}else hide('err-sw');
   }
   if(currentPage===5){
     if(!document.querySelectorAll('#goals-list input[type=checkbox]:checked').length){show('err-goals');ok=false;}else hide('err-goals');
@@ -619,15 +569,19 @@ function buildPdfHTML(d){
   const dir=lang==='he'?'rtl':'ltr';
   const dateStr=new Date().toLocaleDateString();
   const orange='#E8611A',blue='#2A5FA8';
-  const logoSrc = logoBase64 || '';
-  const hdr=(pg,tot)=>`<div class="pt-header"><div class="pt-header-texts"><div class="pt-title">${t('headerTitle')}</div><div class="pt-sub">${t('headerSub')}</div></div>${logoSrc?`<img class="pt-logo" src="${logoSrc}" alt="Cimatron">`:'<span style="color:#fff;font-weight:700;font-size:18px">cimatron</span>'}</div>`;
-  const ftr=(pg,tot)=>`<div class="pt-footer"><span>${t('dateLabel')}: ${dateStr}</span><span>${t('pageLabel')} ${pg}/${tot}</span></div>`;
-  const sec=(txt,cls)=>`<div class="pt-sec-title ${cls||''}">${txt}</div>`;
-  const row=(l,v)=>v?`<div class="pt-row"><span class="pt-lbl">${l}</span><span class="pt-val">${v}</span></div>`:'';
-  const skillRows=(arr,cls)=>arr.map(s=>`<div class="pt-skill-row"><span class="pt-skill-topic">${s.topic}</span><span class="pt-skill-level ${cls||''}">${s.level}</span></div>`).join('');
-  const p1=`<div class="pt-page" dir="${dir}">${hdr(1,3)}<div class="pt-body"><div class="pt-section">${sec(t('p1'))}${row(t('fname'),d.fname+' '+d.lname)}${d.candidateName?row(t('candidate'),d.candidateName):''}${row(t('phone'),d.phone)}${row(t('company'),d.company)}${row(t('role'),d.roles)}</div><div class="pt-section">${sec(t('p2'))}<div class="pt-row"><span class="pt-val" style="font-weight:700">${d.course}</span></div></div></div>${ftr(1,3)}</div>`;
-  const p2=`<div class="pt-page" dir="${dir}">${hdr(2,3)}<div class="pt-body"><div class="pt-section">${sec(t('p3'))}<div class="pt-row"><span class="pt-val">${d.sw}</span></div></div><div class="pt-section">${sec(t('p4'))}${!isGibbs()&&d.cadSkills.length?`<div style="font-size:13px;font-weight:700;color:${orange};margin:8px 0 4px">CAD</div>${skillRows(d.cadSkills)}`:''}${d.camSkills.length?`<div style="font-size:13px;font-weight:700;color:${orange};margin:10px 0 4px">CAM</div>${skillRows(d.camSkills)}`:''}${d.gibbsSkills.length?`<div style="font-size:13px;font-weight:700;color:${blue};margin:10px 0 4px">GibbsCAM</div>${skillRows(d.gibbsSkills,'blue')}`:''}}</div></div>${ftr(2,3)}</div>`;
-  const p3=`<div class="pt-page" dir="${dir}">${hdr(3,3)}<div class="pt-body"><div class="pt-section">${sec(t('p5'))}${d.goals.map(g=>`<div class="pt-goal">• ${g}</div>`).join('')}</div>${d.expectations?`<div class="pt-section">${sec(t('expectations').replace(/ \(.*\)/,''))}<div style="font-size:14px;color:#333;line-height:1.7">${d.expectations}</div></div>`:''}</div>${ftr(3,3)}</div>`;
+  const logo=logoBase64?`<img src="${logoBase64}" style="height:36px" alt="Cimatron">`:'<span style="color:#fff;font-weight:700;font-size:18px">cimatron</span>';
+
+  const hdr=()=>`<div style="background:${orange};padding:16px 28px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0"><div><div style="color:#fff;font-size:20px;font-weight:700">${t('headerTitle')}</div><div style="color:#ffe0cc;font-size:13px;margin-top:2px">${t('headerSub')}</div></div>${logo}</div>`;
+  const ftr=(pg,tot)=>`<div style="border-top:1px solid #eee;padding:10px 32px;display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#bbb;flex-shrink:0"><span>${t('dateLabel')}: ${dateStr}</span><span>${t('pageLabel')} ${pg}/${tot}</span></div>`;
+  const sec=(txt,cls)=>`<div style="background:${cls==='blue'?blue:orange};color:#fff;display:inline-block;padding:5px 14px;border-radius:5px;font-size:13px;font-weight:700;margin-bottom:10px">${txt}</div>`;
+  const row=(l,v)=>v?`<div style="display:flex;gap:10px;margin-bottom:7px;font-size:13px;line-height:1.5"><span style="color:#999;min-width:120px;flex-shrink:0;font-size:12px">${l}</span><span style="color:#222;flex:1">${v}</span></div>`:'';
+  const skillRows=(arr,cls)=>arr.map(s=>`<div style="display:flex;justify-content:space-between;font-size:12px;padding:5px 0;border-bottom:1px solid #f0f0f0"><span style="color:#444;flex:1">${s.topic}</span><span style="color:${cls==='blue'?blue:orange};font-weight:700">${s.level}</span></div>`).join('');
+  const page=(content,pg,tot)=>`<div style="width:900px;min-height:1272px;display:flex;flex-direction:column;background:#fff;font-family:Arial,sans-serif;direction:${dir}">${hdr()}<div style="padding:22px 32px;flex:1">${content}</div>${ftr(pg,tot)}</div>`;
+
+  const p1=page(`<div style="margin-bottom:20px">${sec(t('p1'))}${row(t('fname'),d.fname+' '+d.lname)}${d.candidateName?row(t('candidate'),d.candidateName):''}${row(t('phone'),d.phone)}${row(t('company'),d.company)}${row(t('role'),d.roles)}</div><div>${sec(t('p2'))}<div style="font-size:13px;font-weight:700;color:#222">${d.course}</div></div>`,1,3);
+  const p2=page(`<div style="margin-bottom:20px">${sec(t('p3'))}<div style="font-size:13px;color:#222">${d.sw}</div></div><div>${sec(t('p4'))}${!isGibbs()&&d.cadSkills.length?`<div style="font-size:13px;font-weight:700;color:${orange};margin:8px 0 4px">CAD</div>${skillRows(d.cadSkills)}`:''}${d.camSkills.length?`<div style="font-size:13px;font-weight:700;color:${orange};margin:10px 0 4px">CAM</div>${skillRows(d.camSkills)}`:''}${d.gibbsSkills.length?`<div style="font-size:13px;font-weight:700;color:${blue};margin:10px 0 4px">GibbsCAM</div>${skillRows(d.gibbsSkills,'blue')}`:''}}</div>`,2,3);
+  const p3=page(`<div style="margin-bottom:20px">${sec(t('p5'))}${d.goals.map(g=>`<div style="font-size:13px;padding:3px 0;color:#333">• ${g}</div>`).join('')}</div>${d.expectations?`<div>${sec(t('expectations').replace(/ \(.*\)/,''))}<div style="font-size:14px;color:#333;line-height:1.7">${d.expectations}</div></div>`:``}`,3,3);
+
   return p1+p2+p3;
 }
 
@@ -640,7 +594,7 @@ async function preparePDF(){
   overlay.classList.add('show');
   const tmpl=document.getElementById('pdf-template');
   tmpl.innerHTML=buildPdfHTML(d);tmpl.style.display='block';
-  await new Promise(r=>setTimeout(r,400));
+  await new Promise(r=>setTimeout(r,500));
   try{
     const {jsPDF}=window.jspdf;
     const pdf=new jsPDF({orientation:'p',unit:'mm',format:'a4'});
