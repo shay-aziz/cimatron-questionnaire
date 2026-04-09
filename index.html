@@ -98,7 +98,7 @@ header{background:#fff;border-bottom:1px solid #ddd;padding:10px 16px;display:fl
   <img id="logo-img" alt="Cimatron" style="height:38px;object-fit:contain">
   <div class="header-title" id="header-title">שאלון קדם קורס – סימטרון</div>
   <div class="header-sub" id="header-sub">צוות סימטרון ישראל</div>
-  <div style="font-size:10px;color:#bbb;margin-top:2px">v3.0</div>
+  <div style="font-size:10px;color:#bbb;margin-top:2px">v3.1</div>
 </header>
 
 <div class="notice-bar" id="main-notice"></div>
@@ -579,7 +579,7 @@ function buildPdfHTML(d){
   const page=(content,pg,tot)=>`<div style="width:900px;min-height:1272px;display:flex;flex-direction:column;background:#fff;font-family:Arial,sans-serif;direction:${dir}">${hdr()}<div style="padding:22px 32px;flex:1">${content}</div>${ftr(pg,tot)}</div>`;
 
   const p1=page(`<div style="margin-bottom:20px">${sec(t('p1'))}${row(t('fname'),d.fname+' '+d.lname)}${d.candidateName?row(t('candidate'),d.candidateName):''}${row(t('phone'),d.phone)}${row(t('company'),d.company)}${row(t('role'),d.roles)}</div><div>${sec(t('p2'))}<div style="font-size:13px;font-weight:700;color:#222">${d.course}</div></div>`,1,3);
-  const p2=page(`<div style="margin-bottom:20px">${sec(t('p3'))}<div style="font-size:13px;color:#222">${d.sw}</div></div><div>${sec(t('p4'))}${!isGibbs()&&d.cadSkills.length?`<div style="font-size:13px;font-weight:700;color:${orange};margin:8px 0 4px">CAD</div>${skillRows(d.cadSkills)}`:''}${d.camSkills.length?`<div style="font-size:13px;font-weight:700;color:${orange};margin:10px 0 4px">CAM</div>${skillRows(d.camSkills)}`:''}${d.gibbsSkills.length?`<div style="font-size:13px;font-weight:700;color:${blue};margin:10px 0 4px">GibbsCAM</div>${skillRows(d.gibbsSkills,'blue')}`:''}}</div>`,2,3);
+  const p2=page(`<div style="margin-bottom:20px">${sec(t('p3'))}<div style="font-size:13px;color:#222">${d.sw}</div></div><div>${sec(t('p4'))}${!isGibbs()&&d.cadSkills.length?`<div style="font-size:13px;font-weight:700;color:${orange};margin:8px 0 4px">CAD</div>${skillRows(d.cadSkills)}`:''}${d.camSkills.length?`<div style="font-size:13px;font-weight:700;color:${orange};margin:10px 0 4px">CAM</div>${skillRows(d.camSkills)}`:''}${d.gibbsSkills.length?`<div style="font-size:13px;font-weight:700;color:${blue};margin:10px 0 4px">GibbsCAM</div>${skillRows(d.gibbsSkills,'blue')}`:''}</div>`,2,3);
   const p3=page(`<div style="margin-bottom:20px">${sec(t('p5'))}${d.goals.map(g=>`<div style="font-size:13px;padding:3px 0;color:#333">• ${g}</div>`).join('')}</div>${d.expectations?`<div>${sec(t('expectations').replace(/ \(.*\)/,''))}<div style="font-size:14px;color:#333;line-height:1.7">${d.expectations}</div></div>`:``}`,3,3);
 
   return p1+p2+p3;
