@@ -116,7 +116,7 @@ header{background:#fff;border-bottom:1px solid #ddd;padding:10px 16px;display:fl
   <img id="logo-img" alt="Cimatron" style="height:40px;object-fit:contain">
   <div class="header-title" id="header-title">שאלון קדם קורס – סימטרון</div>
   <div class="header-sub" id="header-sub">צוות סימטרון ישראל</div>
-  <div style="font-size:10px;color:#bbb;margin-top:2px">v2.5</div>
+  <div style="font-size:10px;color:#bbb;margin-top:2px">v2.6</div>
 </header>
 
 <div class="notice-bar" id="main-notice"></div>
@@ -643,13 +643,10 @@ async function preparePDF(){
   await new Promise(r=>setTimeout(r,400));
   try{
     const {jsPDF}=window.jspdf;
-    const pdf=new jsPDF({orientation:'p',unit:'mm',format:'a4'});
-    const pages=tmpl.children;
-    for(let i=0;i<pages.length;i++){
-      if(i>0)pdf.addPage();
-      const canvas=await html2canvas(pages[i],{scale:2.5,useCORS:true,backgroundColor:'#ffffff',logging:false,width:900,height:1272});
-      pdf.addImage(canvas.toDataURL('image/jpeg',0.82),'JPEG',0,0,210,297);
-    }
+    const canvas=await html2canvas(tmpl,{scale:2,useCORS:true,backgroundColor:'#ffffff',logging:false,width:800,windowWidth:800});
+    const imgW=210, imgH=imgW*canvas.height/canvas.width;
+    const pdf=new jsPDF({orientation:'p',unit:'mm',format:[imgW,imgH]});
+    pdf.addImage(canvas.toDataURL('image/jpeg',0.9),'JPEG',0,0,imgW,imgH);
     savedPdfBlob=pdf.output('blob');
   }catch(e){console.error(e);alert('שגיאה ביצירת PDF');}
   finally{tmpl.style.display='none';overlay.classList.remove('show');}
