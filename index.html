@@ -55,8 +55,8 @@ header{background:#fff;border-bottom:1px solid #ddd;padding:10px 16px;display:fl
 .skill-table th{font-size:11px;color:#666;padding:5px 2px;text-align:center;font-weight:400}
 .skill-table th:first-child{text-align:right;min-width:120px}
 .skill-table td{padding:3px 2px;border-bottom:1px solid #eee;font-size:12px;vertical-align:middle}
-.skill-table td:first-child{text-align:right;color:#333;font-size:11px}
-.skill-table td:not(:first-child){text-align:center;width:28%}
+.skill-table td:first-child{text-align:right;color:#333;font-size:11px;width:55%}
+.skill-table td:not(:first-child){text-align:center;width:15%}
 .skill-table input[type=radio]{accent-color:#E8611A;width:22px;height:22px;cursor:pointer}
 .textarea-field{width:100%;border:1px solid #ccc;border-radius:8px;padding:10px 12px;font-size:14px;font-family:Arial;min-height:80px;outline:none;resize:vertical;direction:inherit;background:#fff}
 .textarea-field:focus{border-color:#E8611A}
@@ -100,7 +100,7 @@ header{background:#fff;border-bottom:1px solid #ddd;padding:10px 16px;display:fl
   <img id="logo-img" alt="Cimatron" style="height:38px;object-fit:contain">
   <div class="header-title" id="header-title">שאלון קדם קורס – סימטרון</div>
   <div class="header-sub" id="header-sub">צוות סימטרון ישראל</div>
-  <div style="font-size:10px;color:#bbb;margin-top:2px">v3.2</div>
+  <div style="font-size:10px;color:#bbb;margin-top:2px">v3.4</div>
 </header>
 
 <div class="notice-bar" id="main-notice"></div>
@@ -426,7 +426,7 @@ function buildRoles(){
   const checked=Array.from(el.querySelectorAll('input:checked')).map(i=>i.value);
   const hadOther=el.querySelector('#role-other-text')?.value||'';
   const last=t('roles').length-1;
-  el.innerHTML=t('roles').map((r,i)=>`<div class="checkbox-item" onclick="toggleCheck(this)"><span>${r}</span><input type="checkbox" value="${i}" ${checked.includes(String(i))?'checked':''}></div>`).join('');
+  el.innerHTML=t('roles').map((r,i)=>`<div class="checkbox-item" onclick="toggleCheck(this,event)"><span>${r}</span><input type="checkbox" value="${i}" ${checked.includes(String(i))?'checked':''}></div>`).join('');
   const ow=document.createElement('div');ow.className='hidden-field'+(checked.includes(String(last))?' show':'');ow.id='role-other-wrap';
   ow.innerHTML=`<input class="other-input" id="role-other-text" type="text" placeholder="${t('otherPlaceholder')}" value="${hadOther}">`;
   el.appendChild(ow);
@@ -435,7 +435,7 @@ function buildRoles(){
   });
 }
 
-function toggleCheck(div){const cb=div.querySelector('input[type=checkbox]');cb.checked=!cb.checked;cb.dispatchEvent(new Event('change'));}
+function toggleCheck(div,event){const cb=div.querySelector('input[type=checkbox]');if(event&&event.target===cb)return;cb.checked=!cb.checked;cb.dispatchEvent(new Event('change'));}
 
 function buildCourses(){
   const el=document.getElementById('courses-list');
@@ -458,7 +458,7 @@ function buildSoftware(){
   const checked=Array.from(el.querySelectorAll('input:checked')).map(i=>i.value);
   const last=t('sw').length-1;
   const hadOther=document.getElementById('sw-other-text')?.value||'';
-  el.innerHTML=t('sw').map((s,i)=>`<div class="sw-item" onclick="toggleCheck(this)"><span>${s}</span><input type="checkbox" value="${i}" ${checked.includes(String(i))?'checked':''}></div>`).join('');
+  el.innerHTML=t('sw').map((s,i)=>`<div class="sw-item" onclick="toggleCheck(this,event)"><span>${s}</span><input type="checkbox" value="${i}" ${checked.includes(String(i))?'checked':''}></div>`).join('');
   const of2=document.getElementById('sw-other-field');
   of2.className='hidden-field'+(checked.includes(String(last))?' show':'');
   document.getElementById('sw-other-text').placeholder=t('otherPlaceholder');
@@ -486,7 +486,7 @@ function buildGoals(){
   const checked=Array.from(el.querySelectorAll('input:checked')).map(i=>i.value);
   const last=t('goals').length-1;
   const hadOther=document.getElementById('goals-other-text')?.value||'';
-  el.innerHTML=t('goals').map((g,i)=>`<div class="checkbox-item" onclick="toggleCheck(this)"><span>${g}</span><input type="checkbox" value="${i}" ${checked.includes(String(i))?'checked':''}></div>`).join('');
+  el.innerHTML=t('goals').map((g,i)=>`<div class="checkbox-item" onclick="toggleCheck(this,event)"><span>${g}</span><input type="checkbox" value="${i}" ${checked.includes(String(i))?'checked':''}></div>`).join('');
   const gof=document.getElementById('goals-other-field');
   gof.className='hidden-field'+(checked.includes(String(last))?' show':'');
   document.getElementById('goals-other-text').placeholder=t('otherPlaceholder');
