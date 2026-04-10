@@ -9,6 +9,7 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:Arial,sans-serif;background:#f5f5f0;color:#222;min-height:100vh}
+.page-wrapper{max-width:794px;margin:0 auto;background:#f5f5f0}
 .lang-bar{background:#fff;border-bottom:1px solid #ddd;padding:8px 16px;display:flex;align-items:center;gap:8px}
 .lang-btn{background:none;border:1px solid #ccc;border-radius:20px;padding:4px 14px;cursor:pointer;font-size:13px;color:#555}
 .lang-btn.active{background:#E8611A;color:#fff;border-color:#E8611A}
@@ -32,7 +33,7 @@ header{background:#fff;border-bottom:1px solid #ddd;padding:10px 16px;display:fl
 .radio-option{display:flex;align-items:center;gap:6px;background:#fff;border:1px solid #ccc;border-radius:8px;padding:8px 16px;cursor:pointer;flex:1;justify-content:center;font-size:14px}
 .radio-option.selected{border-color:#E8611A;background:#fff8f5}
 .radio-option input{accent-color:#E8611A}
-.checkbox-item{background:#fff;border:1px solid #ddd;border-radius:8px;padding:11px 14px;margin-bottom:7px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-size:14px}
+.checkbox-item{background:#fff;border:1px solid #ddd;border-radius:8px;padding:11px 14px;margin-bottom:7px;display:flex;align-items:center;justify-content:flex-end;gap:10px;cursor:pointer;font-size:14px;flex-direction:row-reverse}
 .checkbox-item input[type=checkbox]{accent-color:#E8611A;width:18px;height:18px;cursor:pointer;flex-shrink:0}
 .checkbox-item:has(input:checked){border-color:#E8611A;background:#fff8f5}
 .other-input{width:100%;border:1px solid #ccc;border-radius:8px;padding:8px 12px;font-size:13px;font-family:Arial;outline:none;margin-top:6px;background:#fff;direction:inherit}
@@ -59,7 +60,7 @@ header{background:#fff;border-bottom:1px solid #ddd;padding:10px 16px;display:fl
 .skill-table input[type=radio]{accent-color:#E8611A;width:22px;height:22px;cursor:pointer}
 .textarea-field{width:100%;border:1px solid #ccc;border-radius:8px;padding:10px 12px;font-size:14px;font-family:Arial;min-height:80px;outline:none;resize:vertical;direction:inherit;background:#fff}
 .textarea-field:focus{border-color:#E8611A}
-.bottom-bar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #ddd;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.bottom-bar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:794px;background:#fff;border-top:1px solid #ddd;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:8px;box-shadow:0 -2px 8px rgba(0,0,0,0.06)}
 .pager{font-size:13px;color:#888;white-space:nowrap}
 .btn{border:none;border-radius:8px;padding:11px 18px;font-size:14px;cursor:pointer;font-weight:700;white-space:nowrap}
 .btn-next{background:#E8611A;color:#fff}
@@ -72,7 +73,7 @@ header{background:#fff;border-bottom:1px solid #ddd;padding:10px 16px;display:fl
 .error-msg{color:#c0392b;font-size:12px;margin-top:5px;display:none}
 .hidden-field{display:none;margin-top:8px}
 .hidden-field.show{display:block}
-.loading-overlay{display:none;position:fixed;inset:0;background:rgba(255,255,255,0.92);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:14px}
+.loading-overlay{display:none;position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:794px;height:100%;background:rgba(255,255,255,0.92);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:14px}
 .loading-overlay.show{display:flex}
 .spinner{width:44px;height:44px;border:4px solid #eee;border-top-color:#E8611A;border-radius:50%;animation:spin 0.8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -82,6 +83,7 @@ header{background:#fff;border-bottom:1px solid #ddd;padding:10px 16px;display:fl
 </head>
 <body>
 
+<div class="page-wrapper">
 <div class="loading-overlay" id="loading-overlay">
   <div class="spinner"></div>
   <div class="loading-text" id="loading-text">מכין PDF...</div>
@@ -98,7 +100,7 @@ header{background:#fff;border-bottom:1px solid #ddd;padding:10px 16px;display:fl
   <img id="logo-img" alt="Cimatron" style="height:38px;object-fit:contain">
   <div class="header-title" id="header-title">שאלון קדם קורס – סימטרון</div>
   <div class="header-sub" id="header-sub">צוות סימטרון ישראל</div>
-  <div style="font-size:10px;color:#bbb;margin-top:2px">v3.1</div>
+  <div style="font-size:10px;color:#bbb;margin-top:2px">v3.2</div>
 </header>
 
 <div class="notice-bar" id="main-notice"></div>
@@ -238,6 +240,8 @@ header{background:#fff;border-bottom:1px solid #ddd;padding:10px 16px;display:fl
   <div class="pager" id="pager">5 / 1</div>
   <button class="btn btn-prev" id="btn-prev" onclick="prevPage()"></button>
 </div>
+
+</div><!-- /page-wrapper -->
 
 <script>
 const T={
