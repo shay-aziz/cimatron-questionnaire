@@ -100,7 +100,7 @@ header{background:#fff;border-bottom:1px solid #ddd;padding:10px 16px;display:fl
   <img id="logo-img" alt="Cimatron" style="height:38px;object-fit:contain">
   <div class="header-title" id="header-title">שאלון קדם קורס – סימטרון</div>
   <div class="header-sub" id="header-sub">צוות סימטרון ישראל</div>
-  <div style="font-size:10px;color:#bbb;margin-top:2px">v3.4</div>
+  <div style="font-size:10px;color:#bbb;margin-top:2px">v3.5</div>
 </header>
 
 <div class="notice-bar" id="main-notice"></div>
@@ -575,18 +575,33 @@ function buildPdfHTML(d){
   const orange='#E8611A',blue='#2A5FA8';
   const logo=logoBase64?`<img src="${logoBase64}" style="height:36px" alt="Cimatron">`:'<span style="color:#fff;font-weight:700;font-size:18px">cimatron</span>';
 
-  const hdr=()=>`<div style="background:${orange};padding:16px 28px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0"><div><div style="color:#fff;font-size:20px;font-weight:700">${t('headerTitle')}</div><div style="color:#ffe0cc;font-size:13px;margin-top:2px">${t('headerSub')}</div></div>${logo}</div>`;
-  const ftr=(pg,tot)=>`<div style="border-top:1px solid #eee;padding:10px 32px;display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#bbb;flex-shrink:0"><span>${t('dateLabel')}: ${dateStr}</span><span>${t('pageLabel')} ${pg}/${tot}</span></div>`;
-  const sec=(txt,cls)=>`<div style="background:${cls==='blue'?blue:orange};color:#fff;display:inline-block;padding:5px 14px;border-radius:5px;font-size:13px;font-weight:700;margin-bottom:10px">${txt}</div>`;
+  const hdr=`<div style="background:${orange};padding:16px 28px;display:flex;align-items:center;justify-content:space-between;margin-bottom:20px"><div><div style="color:#fff;font-size:20px;font-weight:700">${t('headerTitle')}</div><div style="color:#ffe0cc;font-size:13px;margin-top:2px">${t('headerSub')}</div></div>${logo}</div>`;
+  const ftr=`<div style="border-top:1px solid #eee;padding:10px 32px;margin-top:20px;display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#bbb"><span>${t('dateLabel')}: ${dateStr}</span></div>`;
+  const sec=(txt,cls)=>`<div style="background:${cls==='blue'?blue:orange};color:#fff;display:inline-block;padding:5px 14px;border-radius:5px;font-size:13px;font-weight:700;margin:14px 0 10px">${txt}</div>`;
   const row=(l,v)=>v?`<div style="display:flex;gap:10px;margin-bottom:7px;font-size:13px;line-height:1.5"><span style="color:#999;min-width:120px;flex-shrink:0;font-size:12px">${l}</span><span style="color:#222;flex:1">${v}</span></div>`:'';
   const skillRows=(arr,cls)=>arr.map(s=>`<div style="display:flex;justify-content:space-between;font-size:12px;padding:5px 0;border-bottom:1px solid #f0f0f0"><span style="color:#444;flex:1">${s.topic}</span><span style="color:${cls==='blue'?blue:orange};font-weight:700">${s.level}</span></div>`).join('');
-  const page=(content,pg,tot)=>`<div style="width:900px;min-height:1272px;display:flex;flex-direction:column;background:#fff;font-family:Arial,sans-serif;direction:${dir}">${hdr()}<div style="padding:22px 32px;flex:1">${content}</div>${ftr(pg,tot)}</div>`;
 
-  const p1=page(`<div style="margin-bottom:20px">${sec(t('p1'))}${row(t('fname'),d.fname+' '+d.lname)}${d.candidateName?row(t('candidate'),d.candidateName):''}${row(t('phone'),d.phone)}${row(t('company'),d.company)}${row(t('role'),d.roles)}</div><div>${sec(t('p2'))}<div style="font-size:13px;font-weight:700;color:#222">${d.course}</div></div>`,1,3);
-  const p2=page(`<div style="margin-bottom:20px">${sec(t('p3'))}<div style="font-size:13px;color:#222">${d.sw}</div></div><div>${sec(t('p4'))}${!isGibbs()&&d.cadSkills.length?`<div style="font-size:13px;font-weight:700;color:${orange};margin:8px 0 4px">CAD</div>${skillRows(d.cadSkills)}`:''}${d.camSkills.length?`<div style="font-size:13px;font-weight:700;color:${orange};margin:10px 0 4px">CAM</div>${skillRows(d.camSkills)}`:''}${d.gibbsSkills.length?`<div style="font-size:13px;font-weight:700;color:${blue};margin:10px 0 4px">GibbsCAM</div>${skillRows(d.gibbsSkills,'blue')}`:''}</div>`,2,3);
-  const p3=page(`<div style="margin-bottom:20px">${sec(t('p5'))}${d.goals.map(g=>`<div style="font-size:13px;padding:3px 0;color:#333">• ${g}</div>`).join('')}</div>${d.expectations?`<div>${sec(t('expectations').replace(/ \(.*\)/,''))}<div style="font-size:14px;color:#333;line-height:1.7">${d.expectations}</div></div>`:``}`,3,3);
+  const content=`
+    ${sec(t('p1'))}
+    ${row(t('fname'),d.fname+' '+d.lname)}
+    ${d.candidateName?row(t('candidate'),d.candidateName):''}
+    ${row(t('phone'),d.phone)}
+    ${row(t('company'),d.company)}
+    ${row(t('role'),d.roles)}
+    ${sec(t('p2'))}
+    <div style="font-size:13px;font-weight:700;color:#222;margin-bottom:14px">${d.course}</div>
+    ${sec(t('p3'))}
+    <div style="font-size:13px;color:#222;margin-bottom:14px">${d.sw}</div>
+    ${sec(t('p4'))}
+    ${!isGibbs()&&d.cadSkills.length?`<div style="font-size:13px;font-weight:700;color:${orange};margin:8px 0 4px">CAD</div>${skillRows(d.cadSkills)}`:''}
+    ${d.camSkills.length?`<div style="font-size:13px;font-weight:700;color:${orange};margin:10px 0 4px">CAM</div>${skillRows(d.camSkills)}`:''}
+    ${d.gibbsSkills.length?`<div style="font-size:13px;font-weight:700;color:${blue};margin:10px 0 4px">GibbsCAM</div>${skillRows(d.gibbsSkills,'blue')}`:''}
+    ${sec(t('p5'))}
+    ${d.goals.map(g=>`<div style="font-size:13px;padding:3px 0;color:#333">• ${g}</div>`).join('')}
+    ${d.expectations?`${sec(t('expectations').replace(/ \(.*\)/,''))}<div style="font-size:14px;color:#333;line-height:1.7">${d.expectations}</div>`:''}
+  `;
 
-  return p1+p2+p3;
+  return `<div style="width:900px;background:#fff;font-family:Arial,sans-serif;direction:${dir};padding:0 32px 32px">${hdr}${content}${ftr}</div>`;
 }
 
 async function preparePDF(){
@@ -597,16 +612,34 @@ async function preparePDF(){
   document.getElementById('loading-text').textContent=t('loading');
   overlay.classList.add('show');
   const tmpl=document.getElementById('pdf-template');
-  tmpl.innerHTML=buildPdfHTML(d);tmpl.style.display='block';
+  tmpl.innerHTML=buildPdfHTML(d);
+  tmpl.style.display='block';
+  tmpl.style.top='-99999px';
   await new Promise(r=>setTimeout(r,500));
   try{
     const {jsPDF}=window.jspdf;
+    const A4_WIDTH_MM=210, A4_HEIGHT_MM=297;
+    const SCALE=2.5;
+    const PX_PER_MM=900/A4_WIDTH_MM; // pixels per mm at 900px wide
+    const pageHeightPx=A4_HEIGHT_MM*PX_PER_MM;
+
+    const canvas=await html2canvas(tmpl.children[0],{scale:SCALE,useCORS:true,backgroundColor:'#ffffff',logging:false,width:900});
+    const totalHeightPx=canvas.height/SCALE;
+    const totalPages=Math.ceil(totalHeightPx/pageHeightPx);
+
     const pdf=new jsPDF({orientation:'p',unit:'mm',format:'a4'});
-    const pages=tmpl.children;
-    for(let i=0;i<pages.length;i++){
+    for(let i=0;i<totalPages;i++){
       if(i>0)pdf.addPage();
-      const canvas=await html2canvas(pages[i],{scale:2.5,useCORS:true,backgroundColor:'#ffffff',logging:false,width:900,height:1272});
-      pdf.addImage(canvas.toDataURL('image/jpeg',0.82),'JPEG',0,0,210,297);
+      const srcY=i*pageHeightPx*SCALE;
+      const srcH=Math.min(pageHeightPx*SCALE, canvas.height-srcY);
+      const pageCanvas=document.createElement('canvas');
+      pageCanvas.width=canvas.width;
+      pageCanvas.height=pageHeightPx*SCALE;
+      const ctx=pageCanvas.getContext('2d');
+      ctx.fillStyle='#ffffff';
+      ctx.fillRect(0,0,pageCanvas.width,pageCanvas.height);
+      ctx.drawImage(canvas,0,srcY,canvas.width,srcH,0,0,canvas.width,srcH);
+      pdf.addImage(pageCanvas.toDataURL('image/jpeg',0.85),'JPEG',0,0,A4_WIDTH_MM,A4_HEIGHT_MM);
     }
     savedPdfBlob=pdf.output('blob');
   }catch(e){console.error(e);alert('שגיאה ביצירת PDF');}
