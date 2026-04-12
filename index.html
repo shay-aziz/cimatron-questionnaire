@@ -100,7 +100,7 @@ header{background:#fff;border-bottom:1px solid #ddd;padding:10px 16px;display:fl
   <img id="logo-img" alt="Cimatron" style="height:38px;object-fit:contain">
   <div class="header-title" id="header-title">שאלון קדם קורס – סימטרון</div>
   <div class="header-sub" id="header-sub">צוות סימטרון ישראל</div>
-  <div style="font-size:10px;color:#bbb;margin-top:2px">v3.5</div>
+  <div style="font-size:10px;color:#bbb;margin-top:2px">v3.6</div>
 </header>
 
 <div class="notice-bar" id="main-notice"></div>
@@ -302,7 +302,7 @@ const T={
     next:'Next ›',prev:'‹ Back',nextFinal:'Finish ›',
     errReq:'Required',errRole:'Select at least one',errCourse:'Please select a course',
     errSw:'Select at least one or mark "No experience"',errGoals:'Select at least one goal',
-    successTitle:'Questionnaire Complete!',successMsg:'Save the PDF and send it to:\nshay.aziz@cimatron.com',
+    successTitle:'Questionnaire Complete!',successMsg:'Save the PDF and send it to:\nmirit.safrin@cimatron.com',
     savePdf:'Save PDF',share:'Share',loading:'Preparing PDF...',dateLabel:'Date',pageLabel:'Page',
   },
   ru:{
@@ -331,7 +331,7 @@ const T={
     next:'Далее ›',prev:'‹ Назад',nextFinal:'Завершить ›',
     errReq:'Обязательное поле',errRole:'Выберите хотя бы один',errCourse:'Выберите курс',
     errSw:'Выберите хотя бы одну программу или "Нет опыта"',errGoals:'Выберите хотя бы одну цель',
-    successTitle:'Анкета завершена!',successMsg:'Сохраните PDF и отправьте на:\nshay.aziz@cimatron.com',
+    successTitle:'Анкета завершена!',successMsg:'Сохраните PDF и отправьте на:\nmirit.safrin@cimatron.com',
     savePdf:'Сохранить PDF',share:'Поделиться',loading:'Подготовка PDF...',dateLabel:'Дата',pageLabel:'Стр.',
   }
 };
@@ -660,7 +660,7 @@ async function doShare(){
     try{await navigator.share({title:t('headerTitle'),files:[file]});}
     catch(e){if(e.name!=='AbortError')doSavePDF();}
   }else{
-    window.open(`mailto:shay.aziz@cimatron.com?subject=${encodeURIComponent(t('headerTitle'))}`,'_self');
+    window.open(`mailto:mirit.safrin@cimatron.com?subject=${encodeURIComponent(t('headerTitle'))}`,'_self');
   }
 }
 
